@@ -3,3 +3,12 @@ body {
   min-height: 100vh;
   background: linear-gradient(180deg, #0e1112 0%, #00090e 100%);
 }
+
+.app-container {
+  width: 1200px;
+  max-width: 90%;
+  margin: 56px auto;
+  display: flex;
+  gap: 28px;
+  height: 100vh;
+}
