@@ -40,7 +40,7 @@
   font-weight: 400;
   line-height: 150%;
   margin: 0;
-  flex-grow: 1; /*Parágrafo cresça para ocupar o espaço disponível */
+  flex-grow: 1; /* Parágrafo cresce para ocupar o espaço disponível */
 }
 
 .footer {

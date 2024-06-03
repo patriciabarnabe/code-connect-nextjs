@@ -15,7 +15,7 @@ body {
   margin: 56px auto;
   display: flex;
   gap: 28px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* Configuração necessária para utilizar fonte local */
@@ -24,3 +24,7 @@ body {
   src: url(../../public/CedarvilleCursive.ttf);
   font-weight: 400;
 } */
+
+.main-content {
+  flex-grow: 1;
+}

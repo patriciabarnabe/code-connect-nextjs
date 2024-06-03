@@ -28,8 +28,10 @@ export default function RootLayout({ children }) {
       {/* Para resolver erro no console: https://stackoverflow.com/questions/75337953/what-causes-nextjs-warning-extra-attributes-from-the-server-data-new-gr-c-s-c */}
       <body suppressHydrationWarning={true}>
         <div className="app-container">
-          <Aside />
-          {children}
+          <div>
+            <Aside />
+          </div>
+          <div className="main-content">{children}</div>
         </div>
       </body>
     </html>
