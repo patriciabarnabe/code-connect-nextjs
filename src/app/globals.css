@@ -1,3 +1,8 @@
+/* É uma declaração de independência para os elementos, dizendo: "Quando eu definir um tamanho, isso inclui tudo – borda e padding!" */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -12,3 +17,10 @@ body {
   gap: 28px;
   height: 100vh;
 }
+
+/* Configuração necessária para utilizar fonte local */
+/* @font-face {
+  font-family: "Seymour One", sans-serif;
+  src: url(../../public/CedarvilleCursive.ttf);
+  font-weight: 400;
+} */
