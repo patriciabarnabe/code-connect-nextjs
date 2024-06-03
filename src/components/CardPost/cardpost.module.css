@@ -47,3 +47,8 @@
 .footer {
   padding: 16px;
 }
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -8,7 +8,7 @@ async function getAllPosts(page) {
     const response = await fetch(
       `http://localhost:3042/posts?_page=${page}&_per_page=6`
     );
-    if (!response.ok) throw new Error("Falha na rede");
+    if (!response.ok) throw new Error("Falha na rede.");
     logger.info("Posts obtidos com sucesso!");
     return response.json();
   } catch (error) {
