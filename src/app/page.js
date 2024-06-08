@@ -20,7 +20,7 @@ async function getAllPosts(page) {
 
   // Nova integração utilizando Prisma e PostgreSQL para acessar os dados
   try {
-    const posts = await db.post.findMany();
+    const posts = await db.post.findMany({ include: { author: true } });
 
     return { data: posts, prev: null, next: null };
   } catch (error) {

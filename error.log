@@ -9,3 +9,15 @@
 {"level":"error","message":"Ops, algo deu errado: matterResult is not defined"}
 {"error":{},"level":"error","message":"Falha ao obter os posts"}
 {"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{"clientVersion":"5.15.0","code":"P2022","meta":{"column":"User.usename","modelName":"Post"},"name":"PrismaClientKnownRequestError"},"level":"error","message":"Falha ao obter os posts"}
+{"error":{"clientVersion":"5.15.0","code":"P2022","meta":{"column":"User.usename","modelName":"Post"},"name":"PrismaClientKnownRequestError"},"level":"error","message":"Falha ao obter os posts"}
+{"error":{"clientVersion":"5.15.0","code":"P2022","meta":{"column":"User.usename","modelName":"Post"},"name":"PrismaClientKnownRequestError"},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
