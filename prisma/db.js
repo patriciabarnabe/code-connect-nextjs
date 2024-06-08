@@ -1,4 +1,4 @@
-// Importar, instanciar e exportar a classe PrismaClient após sua geração com npx prisma generate
+// Importar, instanciar e exportar a classe PrismaClient após sua geração com $ npx prisma generate
 
 import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();

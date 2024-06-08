@@ -7,3 +7,5 @@
 {"level":"error","message":"Ops, algo correu mal: Falha na rede"}
 {"level":"error","message":"Ops, algo deu errado: matterResult is not defined"}
 {"level":"error","message":"Ops, algo deu errado: matterResult is not defined"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}
+{"error":{},"level":"error","message":"Falha ao obter os posts"}

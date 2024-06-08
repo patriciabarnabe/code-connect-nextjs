@@ -2,18 +2,30 @@ import { CardPost } from "@/components/CardPost";
 import logger from "@/logger";
 import styles from "./page.module.css";
 import Link from "next/link";
+import db from "../../prisma/db";
 
 async function getAllPosts(page) {
+  // Primeira integração via fetch com a API Rest do JSON-server
+  // try {
+  //   const response = await fetch(
+  //     `http://localhost:3042/posts?_page=${page}&_per_page=6`
+  //   );
+  //   if (!response.ok) throw new Error("Falha na rede.");
+  //   logger.info("Posts obtidos com sucesso!");
+  //   return response.json();
+  // } catch (error) {
+  //   logger.error("Ops, algo deu errado: " + error.message);
+  //   return [];
+  // }
+
+  // Nova integração utilizando Prisma e PostgreSQL para acessar os dados
   try {
-    const response = await fetch(
-      `http://localhost:3042/posts?_page=${page}&_per_page=6`
-    );
-    if (!response.ok) throw new Error("Falha na rede.");
-    logger.info("Posts obtidos com sucesso!");
-    return response.json();
+    const posts = await db.post.findMany();
+
+    return { data: posts, prev: null, next: null };
   } catch (error) {
-    logger.error("Ops, algo deu errado: " + error.message);
-    return [];
+    logger.error("Falha ao obter os posts", { error });
+    return { data: [], prev: null, next: null };
   }
 }
 
