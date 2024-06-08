@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Criação de tabelas/models no Prisma
+model User {
+  // Chave/campo da tabela com nome 'id' do tipo 'Int' com uma anotação '@id' indicando que este é o identificador da tabela, ou seja, a sua chave primária e com um valor '@default' que será criado e incrementado automaticamente
+  id Int @id @default(autoincrement()) 
+  name String
+  // Validação com '@unique' para que o 'username' seja único, ou seja, não pode haver mais de um usuário com o mesmo username
+  usename String @unique
+  avatar String
+  // Mapear posts que o usuário pode ter, ou seja, o usuário possui um ou mais posts. Isso é um relacionamento entre tabelas (User x Post)
+  Post Post[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  cover String
+  title String
+  slug String @unique
+  body String
+  markdown String 
+  // Esse campo 'authorId' será igual ao campo de 'id' da tabela de User
+  authorId Int
+  // Anotação '@relation' serve para explicar como que a tabela Post se relaciona com a tabela User: o campo contido em 'fields' (dentro da tabela de Post) fará referência ao campo contido em 'references' (dentro da tabela de User)
+  author User @relation(fields: [authorId], references: [id])
+}
