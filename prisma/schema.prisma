@@ -40,6 +40,9 @@ model Post {
   author User @relation(fields: [authorId], references: [id])
 }
 
+// Primeira migration para criação das tabelas: npx prisma migrate dev --name init
+
 // Migration: Configurar e traduzir os modelos/tabelas criados nesse arquivo para uma linguagem que o Postgres entenda e consiga manipular essas informações, ou seja, irá fazer a conexão com o banco de dados para criar essas tabelas/modelos dentro dele. Isso quer dizer que o desenvolvedor não irá manusear o Postgres diretamente, pois isso será feito pelo Prisma (tanto a criação quanto a manipulação dos dados). Em outras palavras, o Prisma faz a tradução do código JavaScript para instruções SQL.
 
-// Primeira migration para criação das tabelas: npx prisma migrate dev --name init
+
+// Geração do Prisma cliente para conectar o NextJS no PostgreSQL utilizando o Prima. Essa geração deve ser feita/refeita sempre que houver alguma alteração no banco de dados: npx prisma generate
