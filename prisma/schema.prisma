@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Criação de tabelas/models no Prisma
+// Criação de tabelas/models/entidades no Prisma
 model User {
   // Chave/campo da tabela com nome 'id' do tipo 'Int' com uma anotação '@id' indicando que este é o identificador da tabela, ou seja, a sua chave primária e com um valor '@default' que será criado e incrementado automaticamente
   id Int @id @default(autoincrement()) 
@@ -32,8 +32,14 @@ model Post {
   slug String @unique
   body String
   markdown String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   // Esse campo 'authorId' será igual ao campo de 'id' da tabela de User
   authorId Int
   // Anotação '@relation' serve para explicar como que a tabela Post se relaciona com a tabela User: o campo contido em 'fields' (dentro da tabela de Post) fará referência ao campo contido em 'references' (dentro da tabela de User)
   author User @relation(fields: [authorId], references: [id])
 }
+
+// Migration: Configurar e traduzir os modelos/tabelas criados nesse arquivo para uma linguagem que o Postgres entenda e consiga manipular essas informações, ou seja, irá fazer a conexão com o banco de dados para criar essas tabelas/modelos dentro dele. Isso quer dizer que o desenvolvedor não irá manusear o Postgres diretamente, pois isso será feito pelo Prisma (tanto a criação quanto a manipulação dos dados). Em outras palavras, o Prisma faz a tradução do código JavaScript para instruções SQL.
+
+// Primeira migration para criação das tabelas: npx prisma migrate dev --name init

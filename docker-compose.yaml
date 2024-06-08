@@ -1,6 +1,6 @@
 # Esse arquivo representa os serviços locais utilizados na aplicação, ou seja, ele irá configurar todas as dependências do projeto para que seja possível rodá-lo localmente. Isso serve para garantir a compatibilidade de desenvolvimento e manutenção entre diferentes tipos de sistemas operacionais. O docker compose irá levantar um banco de dados Postgres, e uma alternativa para ele seria instalar o banco de dados manualmente, mas para garantir e maximizar a compatibilidade de desenvolvimento, a criação do banco de dados por este arquivo é a melhor opção.
 
-# Comando 'docker-compose up' irá levantar o ambiente de desenvolvimento
+# Comando 'docker-compose up -d' irá levantar e rodar o ambiente de desenvolvimento local
 
 services:
   # 'services' define um ou mais serviços, cada um representando um contêiner.
