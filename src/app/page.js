@@ -20,9 +20,27 @@ async function getAllPosts(page) {
 
   // Nova integração utilizando Prisma e PostgreSQL para acessar os dados
   try {
-    const posts = await db.post.findMany({ include: { author: true } });
+    const postsPerPage = 4;
 
-    return { data: posts, prev: null, next: null };
+    // Validação para saber se existe ou não uma página anterior
+    const prevPage = page > 1 ? page - 1 : null;
+
+    // Validação para saber se existe ou não uma próxima página
+    const totalPosts = await db.post.count(); // Quantos posts existem na tabela
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+    const nextPage = page < totalPages ? page + 1 : null;
+
+    // Skip de posts para paginação
+    const skip = (page - 1) * postsPerPage;
+
+    const posts = await db.post.findMany({
+      take: postsPerPage, // Pegar apenas os 6 primeiros posts que vierem do banco de dados
+      orderBy: { createdAt: "desc" }, // Ordenação pela data mais recente de criação dos posts
+      skip,
+      include: { author: true }, // Inclusão do relacionamento entre tabelas User x Post
+    });
+
+    return { data: posts, prev: prevPage, next: nextPage };
   } catch (error) {
     logger.error("Falha ao obter os posts", { error });
     return { data: [], prev: null, next: null };
@@ -31,7 +49,7 @@ async function getAllPosts(page) {
 
 export default async function Home({ searchParams }) {
   // Paginação baseada nas queries da URL
-  const currentPage = searchParams?.page || 1;
+  const currentPage = parseInt(searchParams?.page || 1);
 
   //Renomeando a propriedade 'data' que vem da API para 'posts'
   const { data: posts, prev, next } = await getAllPosts(currentPage);
