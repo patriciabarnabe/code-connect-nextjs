@@ -4,22 +4,35 @@ import html from "remark-html";
 
 import styles from "./page.module.css";
 import { CardPost } from "@/components/CardPost";
+import db from "../../../../prisma/db";
+import { redirect } from "next/navigation";
 
 async function getPostBySlug(slug) {
-  const url = `http://localhost:3042/posts?slug=${slug}`;
+  // Primeira integração via fetch com a API Rest do JSON-server
+  // const url = `http://localhost:3042/posts?slug=${slug}`;
 
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Falha na rede.");
+    //   const response = await fetch(url);
+    //   if (!response.ok) throw new Error("Falha na rede.");
 
-    const data = await response.json();
-    if (!data.length) {
-      logger.info("Post não encontrado.");
-      return {};
+    //   const data = await response.json();
+    //   if (!data.length) {
+    //     logger.info("Post não encontrado.");
+    //     return {};
+    //   }
+
+    //   logger.info("Post obtido com sucesso!");
+    //   const post = data[0];
+
+    // Nova integração utilizando Prisma e PostgreSQL para acessar os dados
+    const post = await db.post.findFirst({
+      where: { slug },
+      include: { author: true },
+    });
+
+    if (!post) {
+      throw new Error(`Post como slug ${slug} não foi encontrado`);
     }
-
-    logger.info("Post obtido com sucesso!");
-    const post = data[0];
 
     // Use remark to convert markdown into HTML string
     const processedContent = await remark().use(html).process(post.markdown);
@@ -29,9 +42,10 @@ async function getPostBySlug(slug) {
 
     return post;
   } catch (error) {
-    logger.error("Ops, algo deu errado: " + error.message);
-    return {};
+    logger.error("Falha ao obter o post com o slug: ", { slug, error });
   }
+
+  redirect("/not-found");
 }
 
 export default async function PagePost({ params }) {
