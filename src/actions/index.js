@@ -60,6 +60,8 @@ export async function postReply(parent, formData) {
       text: formData.get("text"),
       authorId: author.id,
       postId: post.id,
+      // Precisamos indcar o parentId para que o Prisma saiba a qual comentário o novo comentário está respondendo.
+      //O ?? (Nullish Coalescing Operator) parent.id é uma forma de garantir que o parentId será o id do comentário pai, caso ele exista, ou o próprio id do comentário pai, caso ele não exista
       parentId: parent.parentId ?? parent.id,
     },
   });
