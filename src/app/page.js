@@ -48,7 +48,10 @@ async function getAllPosts(page, searchQuery) {
       orderBy: { id: "desc" }, // Ordenação pelo número dos ids dos posts
       skip,
       where,
-      include: { author: true }, // Inclusão do relacionamento entre tabelas User x Post
+      include: {
+        author: true,
+        comments: true,
+      }, // Inclusão do relacionamento entre tabelas User x Post
     });
 
     return { data: posts, prev: prevPage, next: nextPage };

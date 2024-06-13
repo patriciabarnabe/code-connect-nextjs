@@ -6,12 +6,14 @@ import { Modal } from "../Modal";
 import { Chat } from "../icons/Chat";
 import { Textarea } from "../Textarea";
 
-import styles from "./commentmodal.module.css";
+import styles from "./modalcomment.module.css";
 import { SubmitButton } from "../SubmitButton";
 import { Subheading } from "../Subheading";
 
 export const ModalComment = ({ action }) => {
+  // Criação de uma referência para o modal
   const modalRef = useRef(null);
+
   return (
     <>
       <Modal ref={modalRef}>
@@ -28,6 +30,7 @@ export const ModalComment = ({ action }) => {
           </div>
         </form>
       </Modal>
+      {/* Conexão com os métodos do Modal utilizando o hook useImperativeHandle() feita no arquivo de Modal/index.jsx */}
       <IconButton onClick={() => modalRef.current.openModal()}>
         <Chat />
       </IconButton>

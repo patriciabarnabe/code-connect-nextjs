@@ -27,7 +27,10 @@ async function getPostBySlug(slug) {
     // Nova integração utilizando Prisma e PostgreSQL para acessar os dados
     const post = await db.post.findFirst({
       where: { slug },
-      include: { author: true },
+      include: {
+        author: true,
+        comments: true,
+      },
     });
 
     if (!post) {
