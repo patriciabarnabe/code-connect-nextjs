@@ -22,6 +22,7 @@ export async function incrementThumbsUp(post) {
   revalidatePath(`/${post.slug}`);
 }
 
+// Parâmetro formData é injetado automaticamente pelo Next.js e servirá para acessar o valor do textarea do componente de comentário através do seu atributo 'name'
 export async function postComment(post, formData) {
   const author = await db.user.findFirst({
     where: {
@@ -38,5 +39,29 @@ export async function postComment(post, formData) {
   });
 
   revalidatePath("/");
+  revalidatePath(`/${post.slug}`);
+}
+
+export async function postReply(parent, formData) {
+  const author = await db.user.findFirst({
+    where: {
+      username: "anabeatriz_dev",
+    },
+  });
+
+  const post = await db.post.findFirst({
+    where: {
+      id: parent.postId,
+    },
+  });
+
+  await db.comment.create({
+    data: {
+      text: formData.get("text"),
+      authorId: author.id,
+      postId: post.id,
+      parentId: parent.parentId ?? parent.id,
+    },
+  });
   revalidatePath(`/${post.slug}`);
 }
