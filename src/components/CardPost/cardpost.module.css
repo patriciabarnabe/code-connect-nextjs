@@ -46,6 +46,15 @@
 
 .footer {
   padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer p {
+  margin: 0;
+  color: #888;
+  font-size: 15px;
+  text-align: center;
 }
 
 .link {

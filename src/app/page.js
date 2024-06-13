@@ -45,7 +45,7 @@ async function getAllPosts(page, searchQuery) {
 
     const posts = await db.post.findMany({
       take: postsPerPage, // Pegar apenas os 6 primeiros posts que vierem do banco de dados
-      orderBy: { createdAt: "desc" }, // Ordenação pela data mais recente de criação dos posts
+      orderBy: { id: "desc" }, // Ordenação pelo número dos ids dos posts
       skip,
       where,
       include: { author: true }, // Inclusão do relacionamento entre tabelas User x Post
